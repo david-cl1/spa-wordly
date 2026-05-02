@@ -26,6 +26,18 @@ async function getDefinition(word) {
     } catch (error) {
         display.textContent = "Sorry, we couldn't find that word. Check your spelling!";
         display.style.color = "red";
+
+        const wordTitle = document.getElementById('textInputDisplay');
+        const phonetics = document.getElementById('PhoneticDisplay');
+        const meanings = document.getElementById('meaningsDisplay');
+        const examples = document.getElementById('exampleDisplay');
+        const synonyms = document.getElementById('synonymsDisplay');
+
+        wordTitle.textContent = ""
+        phonetics.textContent = ""
+        meanings.textContent = ""
+        examples.textContent = ""
+        synonyms.textContent = ""
     }
 }
 function displayResults(data) {
@@ -40,12 +52,12 @@ function displayResults(data) {
 
     if (wordTitle) {
         wordTitle.textContent = wordData.word.toUpperCase();
+        wordTitle.style.color = "blue"; 
     }
 
     const mainDef = wordData.meanings[0].definitions[0].definition;
     display.textContent = mainDef;
-    display.style.color = "white"; 
-
+   
     phonetics.textContent = wordData.phonetic || "Pronunciation not available";
     
     meanings.textContent = wordData.meanings[0].partOfSpeech;
