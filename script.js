@@ -5,7 +5,20 @@ const handleSearch = () => {
     if (word === "") {
         display.textContent = "Please enter a word to search!";
         display.style.color = "orange"; 
+
+        const wordTitle = document.getElementById('textInputDisplay');
+        const phonetics = document.getElementById('PhoneticDisplay');
+        const meanings = document.getElementById('meaningsDisplay');
+        const examples = document.getElementById('exampleDisplay');
+        const synonyms = document.getElementById('synonymsDisplay');
+
+        wordTitle.textContent = ""
+        phonetics.textContent = ""
+        meanings.textContent = ""
+        examples.textContent = ""
+        synonyms.textContent = ""
         return; 
+        
     }
 
     getDefinition(word);
@@ -56,11 +69,12 @@ function displayResults(data) {
     }
 
     const mainDef = wordData.meanings[0].definitions[0].definition;
-    display.textContent = mainDef;
+    display.textContent = `DEFINITION: ${mainDef}`;
+    display.style.color = "black"; 
    
-    phonetics.textContent = wordData.phonetic || "Pronunciation not available";
+    phonetics.textContent = `PHONETICS: ${wordData.phonetic}` || "Pronunciation not available";
     
-    meanings.textContent = wordData.meanings[0].partOfSpeech;
+    meanings.textContent = `MEANINGS: ${wordData.meanings[0].partOfSpeech}`;
 
     const exampleText = wordData.meanings[0].definitions[0].example;
     examples.textContent = exampleText ? `Example: "${exampleText}"` : "No example available.";
